@@ -1,0 +1,12 @@
+# https://docs.ezkl.xyz/ llms.txt
+
+- [EZKL System Overview](https://docs.ezkl.xyz/): Developer-friendly system for verifiable AI and analytics.
+- [ezkl Troubleshooting Guide](https://docs.ezkl.xyz/troubleshooting/): Comprehensive troubleshooting guide for ezkl tool and errors.
+- [Zero-Knowledge ML Resources](https://docs.ezkl.xyz/resources/): Explore resources on zero-knowledge machine learning and related topics.
+- [EZKL AI Products](https://docs.ezkl.xyz/products/): Explore EZKL's AI products: library and orchestration platform.
+- [Zero Knowledge Security](https://docs.ezkl.xyz/security/): Explore security concerns in zero knowledge machine learning.
+- [EZKL Model Verification](https://docs.ezkl.xyz/getting-started/): Steps to generate and verify a model using EZKL.
+- [Zero-Knowledge Proof Generation](https://docs.ezkl.xyz/getting-started/prove/): Learn how to generate zero-knowledge proofs effectively.
+- [EZKL Setup Guide](https://docs.ezkl.xyz/getting-started/setup/): Learn how to set up EZKL proof generation and verification.
+- [EZKL Proof Verification](https://docs.ezkl.xyz/getting-started/verify/): Learn how to verify EZKL proofs effectively.
+- [EZKL Installation Guide](https://docs.ezkl.xyz/getting-started/installation/): Guide to install EZKL CLI and additional notes.
