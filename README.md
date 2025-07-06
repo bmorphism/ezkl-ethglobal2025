@@ -1,64 +1,81 @@
-# 🎵 Agentic Proof-Chaining Framework 🎵
+# 🎵 Agentic Proof-Chaining Framework - Maximal Edition 🎵
 
 This repository contains the smart contracts, agent code, and documentation for a comprehensive, multi-agent proof-chaining framework using EZKL. It provides the on-chain infrastructure for a new kind of verifiable, multi-agent AI collaboration.
 
 ## The Vision: An AI Orchestra
 
-This project enables a "digital orchestra" where autonomous AI agents, each a master of its own "instrument" (a specific neural architecture), can collaborate to perform complex tasks. Their individual contributions are woven together into a single, verifiable "symphony" on the blockchain.
+This project enables a "digital orchestra" where autonomous AI agents, each a master of its own "instrument" (a specific neural architecture), can collaborate to perform complex tasks. Their individual contributions are woven together into a single, verifiable "symphony" on the blockchain, all under the direction of a master "conductor."
 
 ---
 
 ## 🎼 The Architectural Overture
 
-This diagram provides a high-level overview of the entire system, from the off-chain agents to the on-chain verifiers.
+This diagram provides a high-level overview of the entire system, now including the coordination layer.
 
 ```mermaid
 graph TD
     subgraph "Off-Chain World: The Performers"
-        A[Agent Alpha: RWKV] -->|1. Generates Proof| B(ZK Proof for Task A)
-        C[Agent Beta: Mamba] -->|3. Generates Proof| D(ZK Proof for Task B)
-        E[Agent Gamma: xLSTM] -->|5. Generates Proof| F(ZK Proof for Task C)
+        A[Agent α]
+        B[Agent β]
+        C[Agent γ]
     end
 
-    subgraph "On-Chain World: The Stage"
-        B --> G{RWKV Verifier}
-        G -->|2. Verifies & Mints| H(Receipt A)
-        
-        D -- Takes Receipt A as input --> I{Mamba Verifier}
-        I -->|4. Verifies & Mints| J(Receipt B)
+    subgraph "On-Chain World: The Stage & The Conductor"
+        A -- Registers with --> R[AgentRegistry]
+        B -- Registers with --> R
+        C -- Registers with --> R
 
-        F -- Takes Receipt B as input --> K{xLSTM Verifier}
-        K -->|6. Verifies & Mints| L(Final Operad Receipt)
+        R -- Informs --> O[ProofChainOrchestrator]
+
+        A -- Generates Proof --> V1{RWKV Verifier}
+        O -- Delegates Task 1 --> A
+        V1 -- Returns Receipt --> O
+
+        B -- Generates Proof --> V2{Mamba Verifier}
+        O -- Delegates Task 2 --> B
+        V2 -- Returns Receipt --> O
+
+        C -- Generates Proof --> V3{xLSTM Verifier}
+        O -- Delegates Task 3 --> C
+        V3 -- Returns Receipt --> O
     end
-
-    style G fill:#e1f5fe,stroke:#333,stroke-width:2px
-    style I fill:#e8f5e8,stroke:#333,stroke-width:2px
-    style K fill:#f3e5f5,stroke:#333,stroke-width:2px
+    
+    style R fill:#fce4ec,stroke:#333,stroke-width:2px
+    style O fill:#e3f2fd,stroke:#333,stroke-width:2px
+    style V1 fill:#e1f5fe,stroke:#333,stroke-width:2px
+    style V2 fill:#e8f5e8,stroke:#333,stroke-width:2px
+    style V3 fill:#f3e5f5,stroke:#333,stroke-width:2px
 ```
 
 ---
 
 ## 🎶 The Proof-Chaining Symphony
 
-This sequence diagram illustrates how the "music" is created—how receipts are passed from one agent to the next to form a verifiable chain of computation.
+This sequence diagram illustrates the full, orchestrated workflow, from agent registration to the completion of a multi-step task.
 
 ```mermaid
 sequenceDiagram
-    participant Agent_Alpha as Agent α (RWKV)
-    participant RWKV_Verifier
-    participant Agent_Beta as Agent β (Mamba)
-    participant Mamba_Verifier
-    participant Agent_Gamma as Agent γ (xLSTM)
-    participant xLSTM_Verifier
+    participant Agent
+    participant AgentRegistry
+    participant Orchestrator
+    participant Verifier
 
-    Agent_Alpha->>+RWKV_Verifier: generateReceipt(proof, 0x0)
-    RWKV_Verifier-->>-Agent_Alpha: receipt_A
+    Agent->>+AgentRegistry: registerAgent()
+    AgentRegistry-->>-Agent: Registration Confirmed
 
-    Agent_Beta->>+Mamba_Verifier: verifyChainedComputation(proof, receipt_A)
-    Mamba_Verifier-->>-Agent_Beta: receipt_B
+    Agent->>+Orchestrator: initiateOperad(task_spec)
+    Orchestrator-->>-Agent: operadId
 
-    Agent_Gamma->>+xLSTM_Verifier: verifyOperadCompletion(proof, [receipt_A, receipt_B])
-    xLSTM_Verifier-->>-Agent_Gamma: final_operad_receipt
+    loop For each step in Operad
+        Orchestrator->>Agent: Delegate Task
+        Agent->>Agent: Perform Computation & Generate Proof
+        Agent->>+Verifier: verify(proof)
+        Verifier-->>-Agent: receipt
+        Agent->>+Orchestrator: submitStepCompletion(receipt)
+        Orchestrator-->>-Agent: Step Confirmed
+    end
+    
+    Orchestrator->>Orchestrator: completeOperad()
 ```
 
 ---
@@ -68,16 +85,12 @@ sequenceDiagram
 Each component in this framework plays a specific role in the overall composition.
 
 *   **The Composers (Python Agents):**
-    *   `src/simple_ezkl_models.py`: Defines the simple "melodies" (AI models) that our agents will perform.
-    *   `src/real_model_inference.py`: The "virtuoso" agent that performs the complex computation and generates the ZK proof.
-
-*   **The Sheet Music (EZKL Workspace):**
-    *   `ezkl_workspace/`: Contains the core "musical scores" (ONNX models and input data) that define the computational tasks.
+    *   `src/`: The off-chain agents that perform the computations and generate the ZK proofs.
 
 *   **The Concert Hall (Solidity Contracts):**
-    *   `contracts/ProductionRWKVVerifier.sol`: The "first chair" verifier, responsible for validating the opening movements of the symphony.
-    *   `contracts/ProductionMambaVerifier.sol`: The "second chair," verifying the intermediate, more complex parts of the composition.
-    *   `contracts/ProductionxLSTMVerifier.sol`: The "conductor," responsible for verifying the grand finale and ensuring the entire operad is coherent.
+    *   `contracts/verifiers/`: The individual "instrument sections," each responsible for verifying proofs from a specific AI architecture.
+    *   `contracts/coordination/AgentRegistry.sol`: The "musicians' guild," where agents register their capabilities and stake their reputation.
+    *   `contracts/coordination/ProofChainOrchestrator.sol`: The "conductor," who directs the entire performance, delegating tasks and ensuring the final composition is coherent.
 
 *   **The Program Notes (Documentation):**
     *   `docs/`: Contains the detailed specifications and guides that explain the theory and structure behind the music.
@@ -95,14 +108,16 @@ Each component in this framework plays a specific role in the overall compositio
 2.  **Configure Environment:**
     *   Create a `.env` file and populate it with your Sepolia RPC URL and private key.
 
-3.  **Deploy Contracts:**
+3.  **Deploy the Maximal Framework:**
     ```bash
-    npx hardhat run scripts/deploy_sepolia.js --network sepolia
+    npx hardhat run scripts/deploy_maximal_framework.js --network sepolia
     ```
 
 ## Directory Structure
 
-*   `contracts/`: Solidity source code.
+*   `contracts/`:
+    *   `verifiers/`: The ZK verifier contracts.
+    *   `coordination/`: The agent coordination contracts.
 *   `scripts/`: Deployment and testing scripts.
 *   `src/`: Python source code for agents.
 *   `ezkl_workspace/`: EZKL models and inputs.
