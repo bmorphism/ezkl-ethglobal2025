@@ -379,65 +379,88 @@ contract AgenticOrchestrator {
     }
     
     /**
-     * @dev Parse proof bytes into RWKV proof format
+     * @dev Parse proof bytes into RWKV proof format - PRODUCTION IMPLEMENTATION
      */
     function _parseRWKVProof(bytes calldata _proof) internal pure returns (ProductionRWKVVerifier.Proof memory) {
-        // This is a simplified proof parser - in production this would properly decode
-        // the EZKL proof format into the expected struct
-        require(_proof.length >= 416, "Proof too short"); // 13 * 32 bytes minimum
+        // EZKL proof format: expect hex_proof from actual EZKL output
+        require(_proof.length >= 2944, "EZKL proof too short"); // 92*32 bytes for complete proof
         
         ProductionRWKVVerifier.Proof memory proof;
-        
-        // Parse proof components (simplified - in production would use proper deserialization)
         uint256 offset = 0;
         
-        // a: [2]uint256
-        proof.a[0] = abi.decode(_proof[offset:offset+32], (uint256));
+        // Parse EZKL proof structure based on actual proof.json format
+        // a: G1 point [2]uint256 - first 64 bytes
+        proof.a[0] = bytesToUint256(_proof[offset:offset+32]);
         offset += 32;
-        proof.a[1] = abi.decode(_proof[offset:offset+32], (uint256));
-        offset += 32;
-        
-        // b: [2][2]uint256 
-        proof.b[0][0] = abi.decode(_proof[offset:offset+32], (uint256));
-        offset += 32;
-        proof.b[0][1] = abi.decode(_proof[offset:offset+32], (uint256));
-        offset += 32;
-        proof.b[1][0] = abi.decode(_proof[offset:offset+32], (uint256));
-        offset += 32;
-        proof.b[1][1] = abi.decode(_proof[offset:offset+32], (uint256));
+        proof.a[1] = bytesToUint256(_proof[offset:offset+32]);
         offset += 32;
         
-        // c: [2]uint256
-        proof.c[0] = abi.decode(_proof[offset:offset+32], (uint256));
+        // b: G2 point [2][2]uint256 - next 128 bytes
+        proof.b[0][0] = bytesToUint256(_proof[offset:offset+32]);
         offset += 32;
-        proof.c[1] = abi.decode(_proof[offset:offset+32], (uint256));
+        proof.b[0][1] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.b[1][0] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.b[1][1] = bytesToUint256(_proof[offset:offset+32]);
         offset += 32;
         
-        // Remaining fields with fallback values
-        if (_proof.length >= offset + 32) {
-            proof.z[0] = abi.decode(_proof[offset:offset+32], (uint256));
-            offset += 32;
-        }
-        if (_proof.length >= offset + 32) {
-            proof.z[1] = abi.decode(_proof[offset:offset+32], (uint256));
-            offset += 32;
-        }
+        // c: G1 point [2]uint256 - next 64 bytes
+        proof.c[0] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.c[1] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
         
-        // Set remaining fields to mock values for demonstration
-        proof.t1[0] = 0x1111111111111111111111111111111111111111111111111111111111111111;
-        proof.t1[1] = 0x2222222222222222222222222222222222222222222222222222222222222222;
-        proof.t2[0] = 0x3333333333333333333333333333333333333333333333333333333333333333;
-        proof.t2[1] = 0x4444444444444444444444444444444444444444444444444444444444444444;
-        proof.t3[0] = 0x5555555555555555555555555555555555555555555555555555555555555555;
-        proof.t3[1] = 0x6666666666666666666666666666666666666666666666666666666666666666;
-        proof.eval_a = 0x7777777777777777777777777777777777777777777777777777777777777777;
-        proof.eval_b = 0x8888888888888888888888888888888888888888888888888888888888888888;
-        proof.eval_c = 0x9999999999999999999999999999999999999999999999999999999999999999;
-        proof.eval_s1 = 0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
-        proof.eval_s2 = 0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb;
-        proof.eval_zw = 0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc;
+        // z: Opening proof [2]uint256 - next 64 bytes
+        proof.z[0] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.z[1] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        
+        // t1: Quotient polynomial commitment [2]uint256
+        proof.t1[0] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.t1[1] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        
+        // t2: Second quotient polynomial commitment [2]uint256
+        proof.t2[0] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.t2[1] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        
+        // t3: Third quotient polynomial commitment [2]uint256
+        proof.t3[0] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.t3[1] = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        
+        // Polynomial evaluations
+        proof.eval_a = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.eval_b = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.eval_c = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.eval_s1 = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.eval_s2 = bytesToUint256(_proof[offset:offset+32]);
+        offset += 32;
+        proof.eval_zw = bytesToUint256(_proof[offset:offset+32]);
         
         return proof;
+    }
+    
+    /**
+     * @dev Convert bytes32 to uint256 for proof parsing
+     */
+    function bytesToUint256(bytes memory _bytes) internal pure returns (uint256) {
+        require(_bytes.length == 32, "Invalid bytes length");
+        uint256 result;
+        assembly {
+            result := mload(add(_bytes, 32))
+        }
+        return result;
     }
     
     /**
