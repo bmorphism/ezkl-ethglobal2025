@@ -1,0 +1,32 @@
+==================================================
+AGENTIC PROOF-CHAINING FRAMEWORK - DEPLOYMENT SPEC
+==================================================
+
+NETWORK: Ethereum Sepolia Testnet
+
+--- VERIFIER CONTRACTS ---
+
+RWKV Verifier
+  Address: 0x52b5e61fA6Ae53BA08B9094eA077820283Dcec01
+  Deployment Cost: 0.04185294 ETH
+  Gas Used: 2,092,647
+  Etherscan: https://sepolia.etherscan.io/address/0x52b5e61fA6Ae53BA08B9094eA077820283Dcec01
+
+Mamba Verifier
+  Address: 0x89dFdcC74Ed05bf2a76eF788b15e5cbC8Ad8C5cD
+  Deployment Cost: 0.04185726 ETH
+  Gas Used: 2,092,863
+  Etherscan: https://sepolia.etherscan.io/address/0x89dFdcC74Ed05bf2a76eF788b15e5cbC8Ad8C5cD
+
+xLSTM Verifier
+  Address: 0x52a55dEBE04124376841dF391Ef0e4eF1dd6835B
+  Deployment Cost: 0.0418575 ETH
+  Gas Used: 2,092,875
+  Etherscan: https://sepolia.etherscan.io/address/0x52a55dEBE04124376841dF391Ef0e4eF1dd6835B
+
+--- PERFORMANCE METRICS ---
+
+Total Deployment Cost: 0.1257 ETH
+Average Verification Gas: ~45,660 gas per proof
+
+--- END OF SPEC ---
