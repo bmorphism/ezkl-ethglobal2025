@@ -1,16 +1,41 @@
-# 🎵 Agentic Proof-Chaining Framework - Maximal Edition 🎵
-
-This repository contains the smart contracts, agent code, and documentation for a comprehensive, multi-agent proof-chaining framework using EZKL. It provides the on-chain infrastructure for a new kind of verifiable, multi-agent AI collaboration.
-
-## The Vision: An AI Orchestra
-
-This project enables a "digital orchestra" where autonomous AI agents, each a master of its own "instrument" (a specific neural architecture), can collaborate to perform complex tasks. Their individual contributions are woven together into a single, verifiable "symphony" on the blockchain, all under the direction of a master "conductor."
+<p align="center">
+  <pre>
+    _   ____   ____   ____
+   / \ |  _ \ / ___| / ___|
+  / _ \| |_) | |    | |
+ / ___ \  __/| |___ | |___
+/_/   \_\_|   \____| \____|
+  </pre>
+</p>
+<h1 align="center">The Agentic Proof-Chaining Framework</h1>
+<p align="center">
+  <strong>An On-Chain Orchestra for Verifiable AI Collaboration</strong>
+</p>
 
 ---
 
-## 🎼 The Architectural Overture
+## 🎼 Overture: The Vision
 
-This diagram provides a high-level overview of the entire system, now including the coordination layer.
+This project enables a **digital orchestra** where autonomous AI agents, each a master of its own "instrument" (a specific neural architecture), can collaborate to perform complex tasks. Their individual contributions are woven together into a single, verifiable "symphony" on the blockchain, all under the direction of a master **conductor**.
+
+This repository contains the complete "Conductor's Score"—the smart contracts, agent source, and documentation for this framework.
+
+---
+
+## 📜 The Movements: Architecture
+
+The framework is composed of distinct, yet harmonious, parts.
+
+### **Movement I: The Performers (Off-Chain Agents)**
+The off-chain agents are the individual musicians. They perform the heavy computational work of AI inference and generate the zero-knowledge proofs of their performance.
+
+### **Movement II: The Stage (Verifier Contracts)**
+The `contracts/verifiers` are the on-chain arbiters of truth. Each verifier is specialized to a specific AI architecture, ensuring that every note played by the performers is correct.
+
+### **Movement III: The Conductor (Coordination Contracts)**
+The `contracts/coordination` layer is the heart of the orchestra.
+*   **`AgentRegistry.sol`**: The "musicians' guild," where agents register their capabilities.
+*   **`ProofChainOrchestrator.sol`**: The **conductor**, who delegates tasks, verifies the cryptographic receipts from the verifiers, and ensures the entire composition is coherent.
 
 ```mermaid
 graph TD
@@ -25,7 +50,7 @@ graph TD
         B -- Registers with --> R
         C -- Registers with --> R
 
-        R -- Informs --> O[ProofChainOrchestrator]
+        R -- Informs --> O[指揮者 ProofChainOrchestrator]
 
         A -- Generates Proof --> V1{RWKV Verifier}
         O -- Delegates Task 1 --> A
@@ -49,77 +74,25 @@ graph TD
 
 ---
 
-## 🎶 The Proof-Chaining Symphony
+## 🎻 The Performance: End-to-End Demo
 
-This sequence diagram illustrates the full, orchestrated workflow, from agent registration to the completion of a multi-step task.
+To experience the symphony, simply conduct the performance. This script is the "Conductor's Baton," orchestrating the entire framework from proof generation to on-chain verification.
 
-```mermaid
-sequenceDiagram
-    participant Agent
-    participant AgentRegistry
-    participant Orchestrator
-    participant Verifier
-
-    Agent->>+AgentRegistry: registerAgent()
-    AgentRegistry-->>-Agent: Registration Confirmed
-
-    Agent->>+Orchestrator: initiateOperad(task_spec)
-    Orchestrator-->>-Agent: operadId
-
-    loop For each step in Operad
-        Orchestrator->>Agent: Delegate Task
-        Agent->>Agent: Perform Computation & Generate Proof
-        Agent->>+Verifier: verify(proof)
-        Verifier-->>-Agent: receipt
-        Agent->>+Orchestrator: submitStepCompletion(receipt)
-        Orchestrator-->>-Agent: Step Confirmed
-    end
-    
-    Orchestrator->>Orchestrator: completeOperad()
+```bash
+make conduct
 ```
 
----
-
-## 🎻 Meet the Orchestra
-
-Each component in this framework plays a specific role in the overall composition.
-
-*   **The Composers (Python Agents):**
-    *   `src/`: The off-chain agents that perform the computations and generate the ZK proofs.
-
-*   **The Concert Hall (Solidity Contracts):**
-    *   `contracts/verifiers/`: The individual "instrument sections," each responsible for verifying proofs from a specific AI architecture.
-    *   `contracts/coordination/AgentRegistry.sol`: The "musicians' guild," where agents register their capabilities and stake their reputation.
-    *   `contracts/coordination/ProofChainOrchestrator.sol`: The "conductor," who directs the entire performance, delegating tasks and ensuring the final composition is coherent.
-
-*   **The Program Notes (Documentation):**
-    *   `docs/`: Contains the detailed specifications and guides that explain the theory and structure behind the music.
+The script will perform a silent, animated orchestration, culminating in a single, understated `✓`—the quiet confirmation that the entire composition is flawless.
 
 ---
 
-## Getting Started
+##  coda: project structure
 
-1.  **Install Dependencies:**
-    ```bash
-    npm install
-    pip install -r requirements.txt
-    ```
-
-2.  **Configure Environment:**
-    *   Create a `.env` file and populate it with your Sepolia RPC URL and private key.
-
-3.  **Deploy the Maximal Framework:**
-    ```bash
-    npx hardhat run scripts/deploy_maximal_framework.js --network sepolia
-    ```
-
-## Directory Structure
-
-*   `contracts/`:
-    *   `verifiers/`: The ZK verifier contracts.
-    *   `coordination/`: The agent coordination contracts.
-*   `scripts/`: Deployment and testing scripts.
-*   `src/`: Python source code for agents.
-*   `ezkl_workspace/`: EZKL models and inputs.
-*   `config/`: Deployment addresses and configuration.
-*   `docs/`: Project documentation.
+*   **`contracts/`**: The Solidity "sheet music."
+*   **`scripts/`**: The deployment and interaction "arrangements."
+*   **`src/`**: The Python source code for the "performers."
+*   **`docs/`**: The detailed "program notes."
+*   **`PHILOSOPHY.md`**: The "composer's manifesto."
+*   **`ROADMAP.md`**: The schedule for "future seasons."
+*   **`Dockerfile`**: A perfect replica of the "concert hall" for reproducible performances.
+*   **`LICENSE`**: The terms of use for this composition.
