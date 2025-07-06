@@ -1,0 +1,26 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "timestamp": "2025-07-06T02:50:00.000Z",
+  "deployer": "0xAC6e0125Fb60D9d7002940b88Ec6698d6cAA473b",
+  "contracts": {
+    "ProductionRWKVVerifier": "0x52b5e61fA6Ae53BA08B9094eA077820283Dcec01",
+    "ProductionMambaVerifier": "0x89dFdcC74Ed05bf2a76eF788b15e5cbC8Ad8C5cD", 
+    "ProductionxLSTMVerifier": "0x52a55dEBE04124376841dF391Ef0e4eF1dd6835B"
+  },
+  "gasUsed": {
+    "ProductionRWKVVerifier": "2092647",
+    "ProductionMambaVerifier": "2092863",
+    "ProductionxLSTMVerifier": "2092875"
+  },
+  "costs": {
+    "ProductionRWKVVerifier": "0.04185294 ETH",
+    "ProductionMambaVerifier": "0.04185726 ETH", 
+    "ProductionxLSTMVerifier": "0.0418575 ETH"
+  },
+  "transactionHashes": {
+    "ProductionRWKVVerifier": "0x15ccd801ef429672c519238fed8482d00b1df870a6257adb217621e1860eb513",
+    "ProductionMambaVerifier": "0xc3e6dec98487c5734dafa86a28060ec2fef0f60d07a2bc2a9dbe67d482e1a42d",
+    "ProductionxLSTMVerifier": "0x2cff182f9824cb4c397a8d23b5770107e01fad96a1f5ca5add2d5b49a6554113"
+  }
+}
