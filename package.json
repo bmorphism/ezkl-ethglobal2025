@@ -1,0 +1,22 @@
+{
+  "name": "production-zk-language-verifiers",
+  "version": "1.0.0",
+  "description": "Production-ready ZK verifiers for non-attention language architectures",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run deploy.js --network localhost",
+    "deploy:sepolia": "hardhat run deploy.js --network sepolia",
+    "deploy:mainnet": "hardhat run deploy.js --network mainnet",
+    "verify:local": "hardhat test --network localhost",
+    "gas-report": "REPORT_GAS=true hardhat test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.0",
+    "hardhat-gas-reporter": "^1.0.9"
+  },
+  "dependencies": {
+    "dotenv": "^17.0.1"
+  }
+}

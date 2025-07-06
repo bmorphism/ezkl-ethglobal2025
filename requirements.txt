@@ -1,0 +1,15 @@
+torch>=2.0.0
+transformers>=4.35.0
+numpy>=1.21.0
+onnx>=1.14.0
+onnxruntime>=1.16.0
+ezkl>=7.0.0
+huggingface-hub>=0.17.0
+tokenizers>=0.14.0
+safetensors>=0.4.0
+accelerate>=0.24.0
+datasets>=2.14.0
+tqdm>=4.65.0
+requests>=2.31.0
+pathlib
+json5
