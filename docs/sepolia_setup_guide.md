@@ -3,7 +3,6 @@
 ## 🚀 Quick Start Deployment
 
 ### Step 1: Get Sepolia ETH
-
 ```bash
 # Visit any of these faucets to get free Sepolia ETH:
 # 1. https://sepoliafaucet.com/ (recommended)
@@ -16,7 +15,6 @@
 ```
 
 ### Step 2: Set Up Environment
-
 ```bash
 # Copy environment template
 cp .env.example .env
@@ -28,7 +26,6 @@ cp .env.example .env
 ```
 
 ### Step 3: Deploy to Sepolia
-
 ```bash
 # Install dependencies if not already done
 npm install
@@ -56,7 +53,6 @@ npx hardhat run deploy_sepolia.js --network sepolia
 ### B. RPC Provider Setup
 
 **Option 1: Alchemy (Recommended)**
-
 ```bash
 # 1. Sign up at https://alchemy.com/
 # 2. Create new app → Ethereum → Sepolia
@@ -65,7 +61,6 @@ SEPOLIA_URL=https://eth-sepolia.g.alchemy.com/v2/YOUR_API_KEY
 ```
 
 **Option 2: Infura**
-
 ```bash
 # 1. Sign up at https://infura.io/
 # 2. Create new project → Ethereum
@@ -74,7 +69,6 @@ SEPOLIA_URL=https://sepolia.infura.io/v3/YOUR_PROJECT_ID
 ```
 
 **Option 3: Public RPC (No signup required)**
-
 ```bash
 SEPOLIA_URL=https://rpc.sepolia.org
 ```
@@ -84,7 +78,6 @@ SEPOLIA_URL=https://rpc.sepolia.org
 1. Sign up at https://etherscan.io/apis
 2. Generate free API key
 3. Add to .env:
-
 ```bash
 ETHERSCAN_API_KEY=YOUR_API_KEY
 ```
@@ -97,7 +90,7 @@ Create `.env` file with these variables:
 # ✅ Required for deployment
 PRIVATE_KEY=your_private_key_here
 
-# ✅ Required for Sepolia connection
+# ✅ Required for Sepolia connection  
 SEPOLIA_URL=your_rpc_url_here
 
 # 🔍 Optional for contract verification
@@ -124,7 +117,6 @@ npx hardhat run deploy_sepolia.js --network sepolia
 ```
 
 Expected output:
-
 ```
 🚀 Starting Sepolia Testnet Deployment
 =====================================
@@ -173,27 +165,23 @@ npx hardhat verify --network sepolia 0xCONTRACT_ADDRESS
 ### Common Issues:
 
 **❌ "Insufficient funds"**
-
 ```
 Solution: Get more ETH from faucet
 Minimum needed: 0.01 ETH
 ```
 
-**❌ "Invalid nonce"**
-
+**❌ "Invalid nonce"**  
 ```
 Solution: Reset MetaMask account or wait for network sync
 ```
 
 **❌ "Network not found"**
-
 ```
 Solution: Check SEPOLIA_URL in .env file
 Test with: curl -X POST $SEPOLIA_URL -H "Content-Type: application/json" -d '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}'
 ```
 
 **❌ "Contract size too large"**
-
 ```
 This shouldn't happen with our contracts (~12.5KB each)
 If it does, optimization is already enabled in hardhat.config.js
@@ -205,6 +193,6 @@ If it does, optimization is already enabled in hardhat.config.js
 ✅ Gas usage ~2M per contract  
 ✅ Total cost under 0.003 ETH  
 ✅ Contracts show up on Sepolia Etherscan  
-✅ Ready for testing phase
+✅ Ready for testing phase  
 
 Your contracts will be live on Ethereum Sepolia testnet and publicly accessible!

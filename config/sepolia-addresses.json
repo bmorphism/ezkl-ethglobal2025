@@ -5,7 +5,7 @@
   "deployer": "0xAC6e0125Fb60D9d7002940b88Ec6698d6cAA473b",
   "contracts": {
     "ProductionRWKVVerifier": "0x52b5e61fA6Ae53BA08B9094eA077820283Dcec01",
-    "ProductionMambaVerifier": "0x89dFdcC74Ed05bf2a76eF788b15e5cbC8Ad8C5cD",
+    "ProductionMambaVerifier": "0x89dFdcC74Ed05bf2a76eF788b15e5cbC8Ad8C5cD", 
     "ProductionxLSTMVerifier": "0x52a55dEBE04124376841dF391Ef0e4eF1dd6835B"
   },
   "gasUsed": {
@@ -15,7 +15,7 @@
   },
   "costs": {
     "ProductionRWKVVerifier": "0.04185294 ETH",
-    "ProductionMambaVerifier": "0.04185726 ETH",
+    "ProductionMambaVerifier": "0.04185726 ETH", 
     "ProductionxLSTMVerifier": "0.0418575 ETH"
   },
   "transactionHashes": {

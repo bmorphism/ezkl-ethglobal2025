@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025
+Copyright (c) 2025 ZK-Verified Agentic Proof-Chaining Framework
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,27 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## Additional Notices
+
+This project includes components from:
+
+- EZKL (MIT License): Zero-knowledge inference framework
+- Hardhat (MIT License): Ethereum development environment
+- OpenZeppelin (MIT License): Smart contract security library
+
+### Security Disclaimer
+
+This software deals with cryptographic proofs and blockchain interactions. Users are responsible for:
+- Securing private keys and sensitive data
+- Understanding gas costs and transaction fees
+- Verifying contract addresses before interaction
+- Following security best practices
+
+### Research Use
+
+This framework is intended for research and educational purposes. Production deployments should undergo thorough security audits.
+
+### Patent Notice
+
+This project may implement techniques covered by patents. Users are responsible for ensuring compliance with applicable patent laws in their jurisdiction.
