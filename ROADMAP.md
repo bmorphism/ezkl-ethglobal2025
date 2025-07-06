@@ -8,17 +8,17 @@ This document outlines the strategic vision for the Agentic Proof-Chaining Frame
 - **Create basic proof chaining mechanisms:** The contracts support the linking of computation receipts.
 - **Establish contract interfaces and events:** The core API for agent interaction is defined.
 
-### Phase 2: Advanced Coordination (In Progress)
-- **Implement agent registry and capability management:** The `AgentRegistry` contract will be fully implemented to allow agents to register their skills and stake reputation.
-- **Deploy proof-chaining orchestrator:** The `ProofChainOrchestrator` will be deployed to manage complex, multi-step workflows.
-- **Create MCP server for external integration:** A standard interface for external agentic systems to interact with the framework will be developed.
-- **Develop coordination protocols:** The rules for agent interaction, task delegation, and reward distribution will be formalized.
+### Phase 2: Darkhaven Consolidation (✅ Complete)
+- **Implement advanced coordination contracts:** The `AgentRegistry` and `ProofChainOrchestrator` contracts are implemented.
+- **Establish a reproducible environment:** A `Dockerfile` and `requirements.lock` file have been created to ensure a consistent development and execution environment.
+- **Implement a CI/CD pipeline:** A GitHub Actions workflow automatically verifies the end-to-end functionality of the framework.
+- **Formalize project governance:** A `LICENSE`, `SECURITY.md`, and `DESIGN_CHOICES.md` have been added to the repository.
 
-### Phase 3: Production Deployment (Planned)
+### Phase 3: Incentivization & Consensus (Planned)
 - **Deploy to Ethereum mainnet:** The framework will be deployed to the Ethereum mainnet, enabling real-world economic applications.
-- **Implement economic incentive mechanisms:** Token-based rewards and penalties will be introduced to incentivize honest and high-quality work.
+- **Implement economic incentive mechanisms:** Token-based rewards and penalties will be introduced to incentivize honest and high-quality work, as discussed in the `INCENTIVES` transcript.
 - **Create reputation and staking systems:** A robust reputation system will be built on top of the `AgentRegistry` to provide a trust metric for agents.
-- **Establish governance protocols:** A decentralized governance system will be created to manage the evolution of the framework.
+- **Establish governance protocols:** A decentralized governance system will be created to manage the evolution of the framework, incorporating the consensus-building ideas from the `ETHGLOBAL` transcript.
 
 ### Phase 4: Ecosystem Expansion (Future)
 - **Multi-chain deployment:** The framework will be deployed to other EVM-compatible chains like Polygon and Arbitrum to reduce costs and increase scalability.

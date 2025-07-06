@@ -32,15 +32,19 @@ This repository contains the complete "Conductor's Score"—the smart contracts,
 The framework is composed of distinct, yet harmonious, parts.
 
 ### **Movement I: The Performers (Off-Chain Agents)**
+
 The off-chain agents are the individual musicians. They perform the heavy computational work of AI inference and generate the zero-knowledge proofs of their performance.
 
 ### **Movement II: The Stage (Verifier Contracts)**
+
 The `contracts/verifiers` are the on-chain arbiters of truth. Each verifier is specialized to a specific AI architecture, ensuring that every note played by the performers is correct.
 
 ### **Movement III: The Conductor (Coordination Contracts)**
+
 The `contracts/coordination` layer is the heart of the orchestra.
-*   **`AgentRegistry.sol`**: The "musicians' guild," where agents register their capabilities.
-*   **`ProofChainOrchestrator.sol`**: The **conductor**, who delegates tasks, verifies the cryptographic receipts from the verifiers, and ensures the entire composition is coherent.
+
+- **`AgentRegistry.sol`**: The "musicians' guild," where agents register their capabilities.
+- **`ProofChainOrchestrator.sol`**: The **conductor**, who delegates tasks, verifies the cryptographic receipts from the verifiers, and ensures the entire composition is coherent.
 
 ```mermaid
 graph TD
@@ -69,7 +73,7 @@ graph TD
         O -- Delegates Task 3 --> C
         V3 -- Returns Receipt --> O
     end
-    
+
     style R fill:#fce4ec,stroke:#333,stroke-width:2px
     style O fill:#e3f2fd,stroke:#333,stroke-width:2px
     style V1 fill:#e1f5fe,stroke:#333,stroke-width:2px
@@ -91,13 +95,13 @@ The script will perform a silent, animated orchestration, culminating in a singl
 
 ---
 
-##  coda: project structure
+## coda: project structure
 
-*   **`contracts/`**: The Solidity "sheet music."
-*   **`scripts/`**: The deployment and interaction "arrangements."
-*   **`src/`**: The Python source code for the "performers."
-*   **`docs/`**: The detailed "program notes."
-*   **`PHILOSOPHY.md`**: The "composer's manifesto."
-*   **`ROADMAP.md`**: The schedule for "future seasons."
-*   **`Dockerfile`**: A perfect replica of the "concert hall" for reproducible performances.
-*   **`LICENSE`**: The terms of use for this composition.
+- **`contracts/`**: The Solidity "sheet music."
+- **`scripts/`**: The deployment and interaction "arrangements."
+- **`src/`**: The Python source code for the "performers."
+- **`docs/`**: The detailed "program notes."
+- **`PHILOSOPHY.md`**: The "composer's manifesto."
+- **`ROADMAP.md`**: The schedule for "future seasons."
+- **`Dockerfile`**: A perfect replica of the "concert hall" for reproducible performances.
+- **`LICENSE`**: The terms of use for this composition.

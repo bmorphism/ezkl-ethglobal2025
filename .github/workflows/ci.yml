@@ -2,36 +2,36 @@ name: Continuous Integration
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   conduct-performance:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
-    - name: Install EZKL
-      run: |
-        curl -L https://github.com/zkonduit/ezkl/releases/download/v10.4.2/ezkl-linux-gnu -o ezkl
-        chmod +x ezkl
-        sudo mv ezkl /usr/local/bin/
+      - name: Install EZKL
+        run: |
+          curl -L https://github.com/zkonduit/ezkl/releases/download/v10.4.2/ezkl-linux-gnu -o ezkl
+          chmod +x ezkl
+          sudo mv ezkl /usr/local/bin/
 
-    - name: Install dependencies
-      run: make install
+      - name: Install dependencies
+        run: make install
 
-    - name: Conduct the end-to-end performance
-      run: make conduct
+      - name: Conduct the end-to-end performance
+        run: make conduct

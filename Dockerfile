@@ -18,10 +18,10 @@ WORKDIR /app
 # Copy application files
 COPY . .
 
-# Install dependencies
+# Install dependencies using the lock file for reproducibility
+COPY requirements.lock .
 RUN npm install
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.lock
 
 # Set the entrypoint
 ENTRYPOINT ["/bin/bash", "conduct.sh"]
-

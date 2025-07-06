@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2025-07-05
 
 ### Added
+
 - Initial project setup with Hardhat and Python.
 - Core ZK verifier contracts for RWKV, Mamba, and xLSTM architectures.
 - Deployment scripts for Sepolia testnet and local devnet.
@@ -23,5 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `LICENSE`, `DESIGN_CHOICES.md`, and `Dockerfile` for governance and reproducibility.
 
 ### Changed
+
 - Updated `README.md` to reflect the maximal framework architecture with new diagrams.
 - Reorganized contract files into `verifiers` and `coordination` subdirectories.

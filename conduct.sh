@@ -3,9 +3,6 @@
 # The Conductor's Baton
 
 # --- Animation Functions ---
-# These functions create the visual performance of the orchestration.
-
-# Clears the screen and sets up the stage
 function setup_stage() {
     clear
     echo "The Conductor's Score"
@@ -15,13 +12,15 @@ function setup_stage() {
     sleep 1
 }
 
-# Displays a step in the orchestration with a visual cue
 function conduct_step() {
     local step_name=$1
-    local duration=$2
+    local pid=$2
     
     echo -n "  [ ] $step_name"
-    sleep $duration
+    while ps -p $pid > /dev/null; do
+        echo -n "."
+        sleep 0.1
+    done
     echo -e "\r  [✓] $step_name"
 }
 
@@ -29,10 +28,17 @@ function conduct_step() {
 
 setup_stage
 
+# Create a temporary file to store the PID of the background process
+BG_PID_FILE=$(mktemp)
+
 # The performance is conducted silently in the background.
-# All verbose output is redirected to /dev/null.
 {
-    set -e # Exit on any error in the background process
+    set -e
+    
+    # Source environment for non-interactive shell
+    source ~/.nvm/nvm.sh
+    source ~/.profile
+    source ~/.bashrc
 
     # Movement I: Composition
     python3 src/simple_ezkl_models.py
@@ -50,35 +56,39 @@ setup_stage
 
     # Movement V: The On-Chain Resonance
     npx hardhat node > /dev/null 2>&1 &
-    NODE_PID=$!
+    echo $! > $BG_PID_FILE
     sleep 5
     npx hardhat run scripts/deploy_devnet.js --network localhost > /dev/null 2>&1
-    
-} &> /dev/null
+
+} &> /dev/null &
+
+PERFORMANCE_PID=$!
 
 # --- Visual Conduction ---
-# This part of the script runs in the foreground, providing the visual performance.
+conduct_step "Composing the melody (model creation)..." $PERFORMANCE_PID
+conduct_step "Scoring the arrangement (circuit compile)..." $PERFORMANCE_PID
+conduct_step "Tuning the instruments (SRS setup)..." $PERFORMANCE_PID
+conduct_step "Generating the performance (proof)..." $PERFORMANCE_PID
+conduct_step "Verifying the resonance (on-chain)..." $PERFORMANCE_PID
 
-conduct_step "Composing the melody (model creation)..." 0.5
-conduct_step "Scoring the arrangement (circuit compile)..." 0.5
-conduct_step "Tuning the instruments (SRS setup)..." 1
-conduct_step "Generating the performance (proof)..." 1.5
-conduct_step "Verifying the resonance (on-chain)..." 2
+wait $PERFORMANCE_PID
+EXIT_CODE=$?
 
 # --- The Finale ---
-# The final confirmation is printed to the screen.
-
-# Restore output for the final confirmation
-exec > /dev/tty 2>&1
-npx hardhat run scripts/resonate.js --network localhost
+if [ $EXIT_CODE -eq 0 ]; then
+    npx hardhat run scripts/resonate.js --network localhost
+    echo
+    echo "---------------------"
+    echo "Performance complete."
+else
+    echo
+    echo "---------------------"
+    echo "The performance was flawed. The conductor has stopped the orchestra."
+    exit 1
+fi
 
 # --- Cleanup ---
-# The stage is cleared silently.
-{
-    kill $NODE_PID
-    rm kzg.srs
-} &> /dev/null
-
-echo
-echo "---------------------"
-echo "Performance complete."
+NODE_PID=$(cat $BG_PID_FILE)
+kill $NODE_PID
+rm $BG_PID_FILE
+rm kzg.srs
