@@ -11,6 +11,11 @@
 <p align="center">
   <strong>An On-Chain Orchestra for Verifiable AI Collaboration</strong>
 </p>
+<p align="center">
+  <a href="https://github.com/bmorphism/ezkl-ethglobal2025/actions/workflows/ci.yml">
+    <img src="https://github.com/bmorphism/ezkl-ethglobal2025/actions/workflows/ci.yml/badge.svg" alt="CI Status">
+  </a>
+</p>
 
 ---
 
