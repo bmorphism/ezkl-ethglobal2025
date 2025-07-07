@@ -60,6 +60,16 @@ graph TD
 
 ---
 
+## Visualizations & Core Flow
+
+To better understand the flow of data and control through the system, please see the following resources:
+
+*   **`docs/CORE_VERIFIER_FLOW.md`**: A detailed markdown document that explains the step-by-step process of verification.
+*   **`scripts/ascii_verifier_flow.py`**: A Python script that generates a simple ASCII art representation of the verifier flow.
+*   **`scripts/verifier_flow_visualization.py`**: A Python script that generates a more detailed, graphical visualization of the verifier flow.
+
+---
+
 ## End-to-End Demo
 
 To run a complete, end-to-end test of the framework (from proof generation to on-chain verification), use the following command:
@@ -75,7 +85,7 @@ This will execute a silent, animated orchestration of the entire process, culmin
 ## Project Structure
 
 *   **`contracts/`**: The Solidity source code for the verifier and coordination contracts.
-*   **`scripts/`**: Deployment and interaction scripts.
+*   **`scripts/`**: Deployment, interaction, and visualization scripts.
 *   **`src/`**: Python source code for the off-chain agents.
 *   **`docs/`**: Detailed project documentation.
 *   **`PHILOSOPHY.md`**: The core concepts and vision behind the project.
