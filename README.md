@@ -7,7 +7,18 @@
   <a href="https://github.com/bmorphism/ezkl-ethglobal2025/actions/workflows/ci.yml">
     <img src="https://github.com/bmorphism/ezkl-ethglobal2025/actions/workflows/ci.yml/badge.svg" alt="CI Status">
   </a>
+  <a href="https://bmorphism.github.io/ezkl-ethglobal2025/">
+    <img src="https://img.shields.io/badge/Live_Demo-Dashboard-brightgreen" alt="Live Demo">
+  </a>
 </p>
+
+---
+
+## 🚀 Live Interactive Demo
+
+**Experience the framework live, without installing anything.** The community validator dashboard is deployed via GitHub Pages and allows you to interact with the deployed contracts directly from your browser.
+
+**[➡️ Launch the Live Dashboard](https://bmorphism.github.io/ezkl-ethglobal2025/)**
 
 ---
 
